@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'registration.css' %}">
+{% endblock css_files %}
+{% block content %}
+<main class="container my-3">
+    <h2>Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        {{ form|crispy }}
+        
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</main>
+{% endblock content %}

@@ -1,0 +1,8 @@
+#cart-total {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: brown;
+    background-color: antiquewhite;
+    border-radius: 50%;
+}

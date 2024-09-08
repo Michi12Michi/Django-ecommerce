@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'store/checkout.css' %}">
+{% endblock css_files %}
+{% block content %}
+<main class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 p-3 mx-2" style="border: 1px solid grey; border-radius: 15px; box-shadow: 2px 2px lightgrey;">
+    <a href="{% url 'cart' %}" class="btn btn-outline-dark">&#x2190; Back to cart</a>
+    <hr>
+    <legend>Order summary</legend>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        {% for item in items %}
+        <tbody>
+          <tr>
+            <th scope="row">{{ item.product.name }}</th>
+            <td>$ {{ item.product.price|floatformat:"2g" }}</td>
+            <td class="d-flex">{{ item.quantity }}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+      {% comment %} <hr> {% endcomment %}
+      <h3>Total: $ {% if not discount %}{{ total|floatformat:"2g" }}{% else %}
+        <span style="text-decoration: line-through;">{{ total|floatformat:"2g" }}</span> {{ new_total|floatformat:"2g" }}
+        {% endif %}
+      </h3>
+      <hr>
+      {{ form.render }}
+    </div>
+  </div>
+  <script>
+    var items = {{ no_items }};
+    pay_btn = document.querySelector('form input[name="submit"]');
+    pay_btn.classList.add("btn");
+    pay_btn.style.border = "none";
+    if (items == 0) {
+      pay_btn.classList.add("disabled");
+    }
+  </script>
+</main>
+
+{% endblock content %}

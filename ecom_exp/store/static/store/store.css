@@ -1,0 +1,26 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    border-radius: 5%;
+    box-shadow: 3px 4px rgba(0, 0, 0, 10%);
+}
+
+.product img {
+    width: 100%; 
+    height:auto; 
+    align-self: center;
+}
+
+.product > div {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product p {
+    font-size: larger;
+    background-color:  rgb(250, 255, 201);
+    border-radius: 30px;
+    box-shadow: 1px 2px rgb(255, 193, 113);
+    padding: 10px;
+}

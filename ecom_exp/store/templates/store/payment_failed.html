@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block css_files %}{% endblock css_files %}
+{% block content %}
+<main class="container my-3">
+    <h2>Payment failed!</h2>
+    <p>You'll be addressed to the <a href="{% url 'store' %}">homepage</a> in a few seconds... Please wait!</p>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        setTimeout(function() {
+            window.location.replace("{% url 'store' %}");
+        }, 7000); 
+    });
+</script>
+{% endblock content %}

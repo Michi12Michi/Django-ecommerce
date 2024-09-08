@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'store/store.css' %}">
+{% endblock css_files %}
+{% block content %}
+<main class="container my-3">
+    <h2>{% if request.user.is_authenticated %}Welcome back, {{ request.user.first_name }}!{% else %}Welcome!{% endif %}</h2>
+    <div class="row justify-content-center">
+        {% for product in products %}
+        <div class="col-lg-3 product mx-3 my-2">
+            <img src="https://picsum.photos/500/300" class="m-3"/>
+            <h3 class="mb-5">{{ product.name }}</h3>
+            <div class="d-flex mb-2">
+                <div>
+                    <button data-product={{ product.id }} data-action="add" class="btn btn-outline-secondary update-cart">Add to cart</button>
+                    <a class="btn btn-outline-success align-items-center" href="#">View</a>
+                </div>
+                <p class="m-0">$ {{ product.price|floatformat:"2g" }}</p>
+            </div>
+            
+        </div>
+        {% empty %}
+            <h3>No products available. Sorry for the inconvenience.</h3>
+        {% endfor %}
+        
+    </div>
+</main>
+{% endblock content %}
